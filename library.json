@@ -1,0 +1,13 @@
+{
+  "name": "ISD2360",
+  "keywords": "ISD2360",
+  "description": "Library to interact with Nuvoton ChipCorder® ISD2360 devices via SPI.",
+  "include": "Arduino/ISD2360",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/Area128/isd2360.git"
+  },
+  "frameworks": "arduino",
+  "platforms": "atmelavr"
+}

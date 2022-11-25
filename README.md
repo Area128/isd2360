@@ -18,6 +18,11 @@ When using pip, you may use the provided `requirements.txt` file to automaticall
 pip install -r ./uploader/requirements.txt
 ```
 
+## Warning
+Uploading an image with a VM that ends in PD on the PU macro will make life really hard. The powerUp() method 
+waits for the device to become idle (PD=0, DBUF=1 & all channels idle) before proceeding so if the PU VM ends in PD,
+this never happens so re-programming the ISD may be impossible.
+
 ## References
   - [ISD2360 Datasheet](https://www.nuvoton.com/export/resource-files/EN_ISD2360_Datasheet_Rev1-0.pdf)
   - [ISD2360 Design Guide](https://www.nuvoton.com/export/resource-files/EN_ISD2360_Datasheet_Rev1-0.pdf)
