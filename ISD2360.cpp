@@ -276,6 +276,7 @@ void ISD2360::powerDown()
 void ISD2360::reset()
 {
   this->spiTransfer(ISD2360_CMD_RESET, this->data, 0);
+  delay(100);
 
   if (this->debug)
   {
