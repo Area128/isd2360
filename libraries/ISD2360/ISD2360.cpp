@@ -28,13 +28,15 @@ ISD2360::ISD2360(uint8_t pinRdy, uint8_t pinSsb, bool debug = false)
 
 void ISD2360::begin()
 {
+  // SSB high first to claim the SPI pins on the ISD2360
+  // and avoid pins set as outputs on both sides
+  pinMode(this->pinSsb, OUTPUT);
+  digitalWrite(this->pinSsb, HIGH);
   pinMode(this->pinRdy, INPUT);
   pinMode(11, OUTPUT); // MOSI
   digitalWrite(11, LOW);
   pinMode(13, OUTPUT); // SCK
   digitalWrite(13, HIGH);
-  pinMode(this->pinSsb, OUTPUT);
-  digitalWrite(this->pinSsb, HIGH);
 
   // MSB first
   // Master
@@ -46,6 +48,24 @@ void ISD2360::begin()
   {
     Serial.begin(115200);
     Serial.println("ISD2360 initialized.");
+  }
+}
+
+void ISD2360::end()
+{
+  // SPI off
+  SPCR = 0b00011111;
+
+  // free all pins, set as inputs
+  pinMode(11, INPUT); // MOSI
+  pinMode(13, INPUT); // SCK
+  pinMode(this->pinRdy, INPUT);
+  pinMode(this->pinSsb, INPUT);
+
+  if (this->debug)
+  {
+    Serial.begin(115200);
+    Serial.println("ISD2360 releaased.");
   }
 }
 

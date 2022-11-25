@@ -86,6 +86,7 @@ class ISD2360 {
 public:
   ISD2360(uint8_t pinRdy, uint8_t pinSsb, bool debug);
   void begin();
+  void end();
   bool getDebug();
   void setDebug(bool debug);
 

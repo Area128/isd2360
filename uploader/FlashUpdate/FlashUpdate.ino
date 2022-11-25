@@ -158,6 +158,7 @@ void setup()
 
   // cleanup
   isd.powerDown();
+  isd.end();
   digitalWrite(PIN_LED_UPDATE, LOW);
 }
 
